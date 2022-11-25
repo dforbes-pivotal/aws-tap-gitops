@@ -45,7 +45,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.donaldforbes.com/aws-tap/supply-chain/tanzu-java-web-app-donald@sha256:69ae846fe68c62b3ae46cc68159c3c37149bad25389ba87f635f5f188e33affd
+        image: harbor.donaldforbes.com/aws-tap/supply-chain/tanzu-java-web-app-donald@sha256:55cc68741fca0da1dd809647dff0e14efb678562be349100b29241f93a9bca54
         livenessProbe:
           httpGet:
             path: /livez
