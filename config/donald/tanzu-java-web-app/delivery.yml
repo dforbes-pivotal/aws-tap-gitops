@@ -15,16 +15,10 @@ spec:
   template:
     metadata:
       annotations:
-        apps.tanzu.vmware.com/debug: "true"
-        apps.tanzu.vmware.com/live-update: "true"
-        autoscaling.knative.dev/maxScale: "1"
         autoscaling.knative.dev/minScale: "1"
         boot.spring.io/actuator: http://:8081/actuator
-        boot.spring.io/version: 2.7.1
+        boot.spring.io/version: 2.7.3
         conventions.carto.run/applied-conventions: |-
-          developer-conventions/debug-convention
-          developer-conventions/live-update-convention
-          developer-conventions/add-source-image-label
           spring-boot-convention/spring-boot
           spring-boot-convention/spring-boot-graceful-shutdown
           spring-boot-convention/spring-boot-web
@@ -34,7 +28,6 @@ spec:
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
-        developer.apps.tanzu.vmware.com/image-source-digest: harbor.donaldforbes.com/aws-tap/source:latest@sha256:ab8bacab789ff6252297de6204d43377e66d551f62632ca8190ed1e3dc67b98e
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -50,13 +43,9 @@ spec:
     spec:
       containers:
       - env:
-        - name: BPL_DEBUG_ENABLED
-          value: "true"
-        - name: BPL_DEBUG_PORT
-          value: "9005"
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.endpoint.health.show-details=always -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include=* -Dmanagement.health.probes.enabled="true" -Dmanagement.server.port="8081" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: harbor.donaldforbes.com/aws-tap/supply-chain/tanzu-java-web-app-donald@sha256:99471e61e4f4b9987485f6dc8585b74f340c448560aa9ed8110f067ae3c8f334
+        image: harbor.donaldforbes.com/aws-tap/supply-chain/tanzu-java-web-app-donald@sha256:8be4ea085f09d07360805a283c60e84ffb8aadf54551bd55c709c66e912e792c
         livenessProbe:
           httpGet:
             path: /livez
